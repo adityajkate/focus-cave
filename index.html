@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Cave — Shared Lo-fi Productivity Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-vibe="tokyo">
+  <div class="page-loader">
+    <div class="loader-content">
+      <div class="loader-orb">
+        <div class="loader-orb-center"></div>
+      </div>
+      <p>Focus Cave</p>
+    </div>
+  </div>
+
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+  <div class="aurora aurora-three"></div>
+  <div class="grain"></div>
+
+  <main class="shell">
+    <header class="hero glass-card">
+      <div class="brand-lockup">
+        <div class="logo-orb" aria-hidden="true">
+          <span></span>
+        </div>
+        <div>
+          <p class="eyebrow">Live shared productivity</p>
+          <h1>Focus Cave</h1>
+        </div>
+      </div>
+
+      <div class="room-controls">
+        <label class="floating-input">
+          <span>Display name</span>
+          <input id="displayName" maxlength="22" autocomplete="off" />
+        </label>
+        <label class="floating-input room-field">
+          <span>Room</span>
+          <input id="roomName" maxlength="24" autocomplete="off" />
+        </label>
+        <button class="primary-btn" id="joinRoomBtn" type="button">Join room</button>
+      </div>
+    </header>
+
+    <section class="top-grid">
+      <article class="timer-card glass-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Pomodoro</p>
+            <h2 id="roomTitle">Cave room</h2>
+          </div>
+          <div class="sync-pill" id="syncPill">
+            <span class="dot"></span>
+            <strong>Shared</strong>
+          </div>
+        </div>
+
+        <div class="timer-face" id="timerFace" aria-live="polite">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <circle class="progress-track" cx="120" cy="120" r="102"></circle>
+            <circle class="progress-ring" id="progressRing" cx="120" cy="120" r="102"></circle>
+          </svg>
+          <div class="timer-readout">
+            <p id="phaseLabel">Focus session</p>
+            <strong id="timeLeft">25:00</strong>
+            <span id="timerStatus">Ready to begin</span>
+          </div>
+        </div>
+
+        <div class="timer-actions">
+          <button class="primary-btn wide" id="startPauseBtn" type="button">Start</button>
+          <button class="ghost-btn" id="resetBtn" type="button">Reset</button>
+          <button class="ghost-btn" id="skipBtn" type="button">Skip</button>
+        </div>
+
+        <div class="timer-settings">
+          <label>
+            <span>Focus</span>
+            <input id="focusMinutes" type="number" min="1" max="120" value="25" />
+          </label>
+          <label>
+            <span>Break</span>
+            <input id="breakMinutes" type="number" min="1" max="60" value="5" />
+          </label>
+          <label class="toggle-row">
+            <span>Shared mode</span>
+            <input id="sharedMode" type="checkbox" checked />
+            <i></i>
+          </label>
+        </div>
+      </article>
+
+      <article class="radio-card glass-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Live lo-fi radio</p>
+            <h2>Signal mixer</h2>
+          </div>
+          <button class="icon-btn" id="masterAudioBtn" type="button" aria-label="Toggle audio">Play</button>
+        </div>
+
+        <div class="stream-grid" id="streamGrid">
+          <button class="stream active" data-stream="chill" type="button">
+            <span class="stream-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 17C5 17 6.5 15 9 15C11.5 15 13 17 15 17C17 17 19 15 19 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M5 12C5 12 6.5 10 9 10C11.5 10 13 12 15 12C17 12 19 10 19 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M5 7C5 7 6.5 5 9 5C11.5 5 13 7 15 7C17 7 19 5 19 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <strong>Chill</strong>
+            <small>soft pads · vinyl</small>
+          </button>
+          <button class="stream" data-stream="dark" type="button">
+            <span class="stream-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <strong>Dark</strong>
+            <small>moody bass · tape</small>
+          </button>
+          <button class="stream" data-stream="jazz" type="button">
+            <span class="stream-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M14 12V5L20 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="18" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </span>
+            <strong>Jazz</strong>
+            <small>keys · brushed hats</small>
+          </button>
+          <button class="stream" data-stream="rain" type="button">
+            <span class="stream-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 19V21M12 19V22M16 19V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M17 7C17 7 18 7 19 8C20 9 20 10 20 10C20 10 20 11 19 12C18 13 17 13 17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M5 10C5 10 5 9 6 8C7 7 8 7 8 7C8 7 9 7 10 8C11 9 11 10 11 10C11 10 11 11 10 12C9 13 8 13 8 13C8 13 7 13 6 12C5 11 5 10 5 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11 7C11 7 12 7 13 8C14 9 14 10 14 10C14 10 14 11 13 12C12 13 11 13 11 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <strong>Rain</strong>
+            <small>sleepy plucks · storm</small>
+          </button>
+        </div>
+
+        <div class="now-playing">
+          <div>
+            <span class="pulse-bars"><i></i><i></i><i></i></span>
+            <span id="nowPlaying">Chill Stream</span>
+          </div>
+          <label class="master-volume">
+            <span>Volume</span>
+            <input id="masterVolume" type="range" min="0" max="1" step="0.01" value="0.55" />
+          </label>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="glass-card panel tasks-panel">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Room task list</p>
+            <h2>What everyone is building</h2>
+          </div>
+          <span class="mini-stat" id="taskCount">0 tasks</span>
+        </div>
+
+        <form class="task-form" id="taskForm">
+          <input id="taskInput" type="text" maxlength="90" placeholder="Write what you are working on..." autocomplete="off" />
+          <button class="primary-btn" type="submit">Add</button>
+        </form>
+        <ul class="task-list" id="taskList"></ul>
+      </article>
+
+      <article class="glass-card panel presence-panel">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Live presence</p>
+            <h2>Roommates</h2>
+          </div>
+          <span class="mini-stat" id="presenceCount">1 online</span>
+        </div>
+        <div class="presence-list" id="presenceList"></div>
+      </article>
+
+      <article class="glass-card panel ambient-panel">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Ambient mixer</p>
+            <h2>Layer your cave</h2>
+          </div>
+          <button class="ghost-btn small" id="clearAmbientBtn" type="button">Clear</button>
+        </div>
+
+        <div class="mixer-stack">
+          <label class="mixer-row">
+            <span><b>Rain</b><small>window drizzle</small></span>
+            <input data-ambient="rain" type="range" min="0" max="1" step="0.01" value="0.22" />
+          </label>
+          <label class="mixer-row">
+            <span><b>Cafe</b><small>soft chatter</small></span>
+            <input data-ambient="cafe" type="range" min="0" max="1" step="0.01" value="0.12" />
+          </label>
+          <label class="mixer-row">
+            <span><b>Fire</b><small>crackle glow</small></span>
+            <input data-ambient="fire" type="range" min="0" max="1" step="0.01" value="0.1" />
+          </label>
+        </div>
+      </article>
+
+      <article class="glass-card panel streak-panel">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Streak tracker</p>
+            <h2>Momentum</h2>
+          </div>
+          <span class="mini-stat" id="streakBadge">0 day streak</span>
+        </div>
+        <div class="streak-stats">
+          <div>
+            <strong id="todaySessions">0</strong>
+            <span>Today</span>
+          </div>
+          <div>
+            <strong id="weekSessions">0</strong>
+            <span>This week</span>
+          </div>
+          <div>
+            <strong id="totalSessions">0</strong>
+            <span>Total</span>
+          </div>
+        </div>
+        <div class="week-dots" id="weekDots" aria-label="Weekly focus sessions"></div>
+      </article>
+
+      <article class="glass-card panel vibe-panel">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Room vibe board</p>
+            <h2>Aesthetic</h2>
+          </div>
+        </div>
+        <div class="vibe-grid" id="vibeGrid">
+          <button class="vibe active" data-vibe="tokyo" type="button">
+            <span class="vibe-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <b>Tokyo night</b>
+          </button>
+          <button class="vibe" data-vibe="forest" type="button">
+            <span class="vibe-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L9 8H15L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 8L6 14H18L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11 14V22M13 14V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <b>Forest</b>
+          </button>
+          <button class="vibe" data-vibe="space" type="button">
+            <span class="vibe-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 3C12 3 8 8 8 12C8 16 12 21 12 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 3C12 3 16 8 16 12C16 16 12 21 12 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M3 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <b>Space</b>
+          </button>
+          <button class="vibe" data-vibe="cabin" type="button">
+            <span class="vibe-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 21H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M5 21V10L12 3L19 10V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 21V15H15V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <b>Cabin</b>
+          </button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <div class="break-modal" id="breakModal" role="dialog" aria-modal="true" aria-labelledby="breakTitle" hidden>
+    <div class="break-card glass-card">
+      <div class="break-orb"></div>
+      <p class="eyebrow">Pomodoro complete</p>
+      <h2 id="breakTitle">Time to breathe</h2>
+      <p id="breakMessage">Stretch your shoulders, drink water, and let the cave reset your focus.</p>
+      <button class="primary-btn" id="closeBreakBtn" type="button">Back to cave</button>
+    </div>
+  </div>
+
+  <template id="taskTemplate">
+    <li class="task-item">
+      <button class="task-check" type="button" aria-label="Toggle task"></button>
+      <div>
+        <strong></strong>
+        <span></span>
+      </div>
+      <button class="task-delete" type="button" aria-label="Delete task"></button>
+    </li>
+  </template>
+
+  <template id="presenceTemplate">
+    <div class="presence-person">
+      <div class="avatar"></div>
+      <div>
+        <strong></strong>
+        <span></span>
+      </div>
+      <i></i>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+  <script src="animations.js"></script>
+  <script src="micro-interactions.js"></script>
+</body>
+</html>
